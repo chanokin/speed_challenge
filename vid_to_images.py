@@ -84,7 +84,7 @@ while(1):
 
         fname = os.path.join(out_path, 'data_%010d.npz'%frame_num)
         np.savez_compressed(fname, 
-            color=color, gray=gray, dvs=dvs, label=0.0)
+            color=color, gray=gray, dvs=dvs, label=np.nan)
 
         frame_num += 1
     except:
