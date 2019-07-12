@@ -14,8 +14,8 @@ def train_generator(data, batch_size=32):
     nfiles = len(data)
     
     while 1:
-        data_ids = np.random.choice(nfiles, size=batch_size, replace=False)
-        data_files = [np.load(data[i]) for i in data]
+        data_ids = np.random.choice(nfiles, size=batch_size, replace=False).astype('int')
+        data_files = [np.load(data[i]) for i in data_ids]
         for i, d in enumerate(data_files):
             img_batch[i, :, :, 0:3] = d['color']
             img_batch[i, :, :, 3] = d['dvs']
@@ -28,12 +28,12 @@ def test_generator(data, batch_size=32):
     
     img_batch = np.zeros((batch_size, rows, cols, channels))
     lbl_batch = np.zeros(batch_size)
-#     files = sorted(glob.glob('./train/*.npz')) == data
+#     files = sorted(glob.glob('./test/*.npz')) == data
     nfiles = len(data)
     
     while 1:
         data_ids = np.random.choice(nfiles, size=batch_size, replace=False)
-        data_files = [np.load(data[i]) for i in data]
+        data_files = [np.load(data[i]) for i in data_ids]
         for i, d in enumerate(data_files):
             img_batch[i, :, :, 0:3] = d['color']
             img_batch[i, :, :, 3] = d['dvs']
