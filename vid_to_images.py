@@ -9,12 +9,12 @@ labels_file = open('./data/train.txt', 'r')
 labels = [float(line) for line in labels_file]
 
 vid = cv2.VideoCapture('./data/train.mp4')
-nframes = float(vid.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
+nframes = float(vid.get(cv2.CAP_PROP_FRAME_COUNT))
 
 ret, frame = vid.read()
 rows, cols, channels = frame.shape
 
-thresh = 0.20
+thresh = 1.11
 color = np.zeros_like(frame, dtype='float')
 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).astype('float')/255.0
 ref = gray.copy()
@@ -56,7 +56,7 @@ sys.stdout.flush()
 
 
 vid = cv2.VideoCapture('./data/test.mp4')
-nframes = float(vid.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
+nframes = float(vid.get(cv2.CAP_PROP_FRAME_COUNT))
 
 ret, frame = vid.read()
 rows, cols, channels = frame.shape
